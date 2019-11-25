@@ -1,0 +1,22 @@
+<h1>Games#new</h1>
+<!-- <p>Find me in app/views/games/new.html.erb</p> -->
+
+<!-- @letters returns an array of letters. need to iterate over each letter -->
+<% @letters_grid.each do |letter| %>
+<%= letter %>
+<% end %>
+<br>
+<h2>What is the <strong>longest</strong> word you can find?</h2>
+
+<form action="/score" method="post">
+  <!-- passing previous input of letters grid into the form -->
+  <!-- methods in controller don't talk to each other -->
+  <!-- need to add Letters to FORM so its accessible as params in controller-->
+  <%= hidden_field_tag :letters, @letters_grid %>
+  <!-- once the guess is 'posted' go to /score -->
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="text" class="text" name="word">
+  <input type="submit" class="submit" value="Play!">
+</form>
+
+
